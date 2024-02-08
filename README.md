@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="./public/tetris.png" width="425" />
+<img src="./public/astro.png" width="85" />
+<img src="./public/htmx.png" width="225" />
 
 # Astro & HTMX: Some small projects
 
