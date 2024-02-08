@@ -1,0 +1,28 @@
+---
+import Example from '../../components/Example.astro'
+---
+
+<Example title="Demo 02 - Fetching Movies after POST">
+  <div class="mb-5 max-w-xl mx-auto">
+    <label
+      for="base-input"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+    >
+      Search for a movie
+    </label>
+
+    <input
+      hx-post="/partials/movies"
+      hx-trigger="input changed delay:500ms"
+      hx-target="#results"
+      hx-swap="innerHTML transition:true"
+      id="base-input"
+      name="search"
+      type="search"
+      placeholder="Avengers, Dragon Ball..."
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg py-2 px-4"
+    />
+  </div>
+
+  <ul id="results" class="grid grid-cols-2 gap-12 max-w-2xl mx-auto"></ul>
+</Example>

@@ -1,0 +1,23 @@
+---
+import Example from '../../components/Example.astro'
+---
+
+<Example title="Demo 03 - Infinite Pokemon Scroll">
+  <!-- Option with button to initial load -->
+  <!-- <button
+        hx-swap="innerHTML"
+        hx-target="#results"
+        hx-trigger="click"
+        hx-disabled-elt="this"
+        hx-get="/partials/pokemons?offset=0">Load Pokemons</button
+    > -->
+
+  <ul
+    hx-swap="innerHTML transition:true"
+    hx-trigger="load"
+    hx-get="/partials/pokemons?offset=0"
+    class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-4xl mx-auto"
+    id="results"
+  >
+  </ul>
+</Example>

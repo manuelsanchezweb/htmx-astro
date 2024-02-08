@@ -1,0 +1,45 @@
+---
+const url = new URL(Astro.request.url)
+const offset = Number(url.searchParams.get('offset')) || 0
+const URL_BASE = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`
+const newOffset = offset + 20
+
+const res = await fetch(URL_BASE)
+const data = await res.json()
+const pokemonList = data.results
+const lastIndex = pokemonList.length - 1
+
+const getIndexThroughPokemonUrl = (url: string) => {
+  const urlParts = url.split('/')
+  return urlParts[urlParts.length - 2]
+}
+
+type Pokemon = {
+  name: string
+  url: string
+}
+---
+
+{
+  pokemonList.map((pokemon: Pokemon, index: number) => {
+    const pokemonId = getIndexThroughPokemonUrl(pokemon.url)
+    const urlImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`
+    const isLastItem = index === lastIndex
+
+    return (
+      <li
+        class="mb-12"
+        {...(isLastItem
+          ? {
+              'hx-get': `../partials/pokemons?offset=${newOffset}`,
+              'hx-trigger': 'revealed',
+              'hx-swap': 'afterend',
+            }
+          : {})}
+      >
+        <img src={urlImg} alt={pokemon.name} />
+        <h2>{pokemon.name}</h2>
+      </li>
+    )
+  })
+}

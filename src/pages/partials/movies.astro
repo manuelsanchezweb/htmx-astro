@@ -1,0 +1,46 @@
+---
+const formData = await Astro.request.formData()
+const search = formData.get('search')
+const res = await fetch(`https://search.imdbot.workers.dev/?q=${search}`)
+
+const { description } = (await res.json()) as {
+  description: Array<Record<string, string>>
+}
+
+const movies = description.map((movie) => {
+  const {
+    '#TITLE': title,
+    '#YEAR': year,
+    '#IMG_POSTER': poster,
+    '#RANK': rank,
+    '#ACTORS': actors,
+  } = movie as Record<string, string>
+
+  return {
+    title,
+    year,
+    poster,
+    rank,
+    actors,
+  }
+})
+---
+
+{
+  movies.map((movie) => {
+    return (
+      <li>
+        <article>
+          <img
+            class="aspect-[11/16] w-full h-auto object-cover rounded-lg"
+            src={movie.poster}
+            alt={movie.title}
+          />
+          <h2>
+            {movie.title} <p>{movie.year}</p>
+          </h2>
+        </article>
+      </li>
+    )
+  })
+}

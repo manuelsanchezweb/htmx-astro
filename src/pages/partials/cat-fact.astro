@@ -1,0 +1,6 @@
+---
+const res = await fetch('https://catfact.ninja/fact')
+const { fact } = await res.json()
+---
+
+<span>{fact}</span>
