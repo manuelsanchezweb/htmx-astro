@@ -5,7 +5,7 @@
 
 # Astro & HTMX: Some small projects
 
-Done for educational purposes. Deploy [here]()
+Done for educational purposes. Deploy [here](https://htmx-astro-five.vercel.app/)
 
 </div>
 
@@ -24,3 +24,7 @@ Done for educational purposes. Deploy [here]()
 | 01  | `cat quote`        | GET a random quote about cats every time you click a button.   |
 | 02  | `movie finder`     | Find your favourite movies using POST request.                 |
 | 03  | `pokedex infinite` | GET Pokemons using infinite scroll and updating the next pages |
+
+## Known bugs
+
+- [ ] We have the loader running in the /demo/01 if we are coming through any other route
